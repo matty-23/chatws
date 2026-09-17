@@ -17,7 +17,6 @@ public class ChatController {
     @MessageMapping("/chat.addUser")
     @SendTo("/topic/public")
     public ChatMessage agregarUsuario(ChatMessage mensaje) {
-        System.out.println("Mensaje Recibido en Servidor:" + mensaje);
         return mensaje;
     }
 }
