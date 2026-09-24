@@ -39,7 +39,7 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage")
     @SendTo(PATH)
     public ChatMessage enviarMensaje(ChatMessage mensaje) {
-        System.out.println("Mensaje recibido en servidor: " + mensaje);
+        System.out.println("Mensaje publico: " + mensaje.toString());
         return mensaje;
     }
 
@@ -57,6 +57,7 @@ public class ChatController {
     @MessageMapping(CHAT_ADD_USER)
     @SendTo(PATH)
     public ChatMessage agregarUsuario(ChatMessage mensaje) {
+        System.out.println("Nuevo usuario: " + mensaje.toString());
         return mensaje;
     }
 
@@ -72,7 +73,7 @@ public class ChatController {
      */
     @MessageMapping("/chat.sendPrivate")
     public void enviarMensajePrivado(ChatMessage mensaje) {
-        System.out.println("Mensaje privado recibido en servidor: " + mensaje);
+        System.out.println("Mensaje Privado: " + mensaje.toString());
         messagingTemplate.convertAndSend("/queue/" + mensaje.getDestinatario(), mensaje);
         messagingTemplate.convertAndSend("/queue/" + mensaje.getUsuario(), mensaje);
     }
